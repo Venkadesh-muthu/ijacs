@@ -241,12 +241,22 @@ class AdminController extends BaseController
         $this->checkLogin();
 
         if ($this->request->getMethod() === 'POST') {
-            $file = $this->request->getFile('issue_image');
+            // Image Upload
+            $image = $this->request->getFile('issue_image');
             $imageName = null;
 
-            if ($file && $file->isValid() && !$file->hasMoved()) {
-                $imageName = $file->getRandomName();
-                $file->move('uploads/issues', $imageName);
+            if ($image && $image->isValid() && !$image->hasMoved()) {
+                $imageName = $image->getRandomName();
+                $image->move('uploads/issues', $imageName);
+            }
+
+            // PDF Upload
+            $pdf = $this->request->getFile('issue_pdf');
+            $pdfName = null;
+
+            if ($pdf && $pdf->isValid() && !$pdf->hasMoved()) {
+                $pdfName = $pdf->getRandomName();
+                $pdf->move('uploads/issues', $pdfName);
             }
 
             $this->issueModel->save([
@@ -254,7 +264,8 @@ class AdminController extends BaseController
                 'issue_no' => $this->request->getPost('issue_no'),
                 'published_date' => $this->request->getPost('published_date'),
                 'issue_type' => $this->request->getPost('issue_type'),
-                'issue_image' => $imageName
+                'issue_image' => $imageName,
+                'issue_pdf' => $pdfName,
             ]);
 
             return redirect()->to('/admin/issues')->with('success', 'Issue added successfully.');
@@ -267,6 +278,7 @@ class AdminController extends BaseController
         ];
         return view('admin/layout/templates', $data);
     }
+
 
     public function editIssue($id)
     {
@@ -294,12 +306,22 @@ class AdminController extends BaseController
                 ]);
             }
 
-            $file = $this->request->getFile('issue_image');
-            $imageName = $issue['issue_image']; // keep old image by default
+            // Image Upload
+            $image = $this->request->getFile('issue_image');
+            $imageName = $issue['issue_image'];
 
-            if ($file && $file->isValid() && !$file->hasMoved()) {
-                $imageName = $file->getRandomName();
-                $file->move('uploads/issues', $imageName);
+            if ($image && $image->isValid() && !$image->hasMoved()) {
+                $imageName = $image->getRandomName();
+                $image->move('uploads/issues', $imageName);
+            }
+
+            // PDF Upload
+            $pdf = $this->request->getFile('issue_pdf');
+            $pdfName = $issue['issue_pdf'];
+
+            if ($pdf && $pdf->isValid() && !$pdf->hasMoved()) {
+                $pdfName = $pdf->getRandomName();
+                $pdf->move('uploads/issues', $pdfName);
             }
 
             $this->issueModel->update($id, [
@@ -307,7 +329,8 @@ class AdminController extends BaseController
                 'issue_no' => $this->request->getPost('issue_no'),
                 'published_date' => $this->request->getPost('published_date'),
                 'issue_type' => $this->request->getPost('issue_type'),
-                'issue_image' => $imageName
+                'issue_image' => $imageName,
+                'issue_pdf' => $pdfName,
             ]);
 
             return redirect()->to('/admin/issues')->with('success', 'Issue updated successfully.');
@@ -320,6 +343,7 @@ class AdminController extends BaseController
             'content' => 'admin/edit_issue'
         ]);
     }
+
 
     public function deleteIssue($id)
     {

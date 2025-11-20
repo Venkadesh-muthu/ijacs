@@ -2,11 +2,14 @@
     <h2 class="mb-5 fw-bold">Issue Details</h2>
 
     <!-- Issue Info Card -->
-    <div class="bg-primary text-white rounded-1 p-5 mb-5 shadow-lg">
+    <div class="bg-primary text-white rounded-1 p-4 p-md-5 mb-5 shadow-lg">
         <div class="d-flex align-items-start gap-4">
-            <img src="<?= base_url(!empty($issue['issue_image']) ? 'uploads/issues/' . $issue['issue_image'] : 'assets/images/no-image.png') ?>"
-                alt="Cover" class="rounded shadow-sm" style="max-width: 140px; max-height: 180px; object-fit: cover;">
-            <div>
+            <div class="col-12 col-md-3 text-center text-md-start">
+                <img src="<?= base_url(!empty($issue['issue_image']) ? 'uploads/issues/' . $issue['issue_image'] : 'assets/images/no-image.png') ?>"
+                    alt="Cover" class="rounded shadow-sm"
+                    style="max-width: 140px; max-height: 180px; object-fit: cover;">
+            </div>
+            <div class="col-12 col-md-9">
                 <h5 class="mb-2"><?= date('F, Y', strtotime($issue['published_date'])) ?></h5>
                 <h4 class="fw-bold mb-3">Volume: <?= esc($issue['volume_no']) ?>, Issue: <?= esc($issue['issue_no']) ?>
                 </h4>
@@ -14,8 +17,8 @@
                     <strong><?= date('d M Y', strtotime($issue['published_date'])) ?></strong>
                 </p>
 
-                <?php if (!empty($issue['pdf_file'])): ?>
-                    <a href="<?= base_url('uploads/issues/' . $issue['pdf_file']) ?>" target="_blank"
+                <?php if (!empty($issue['issue_pdf'])): ?>
+                    <a href="<?= base_url('uploads/issues/' . $issue['issue_pdf']) ?>" target="_blank"
                         class="btn btn-light btn-sm shadow-sm">
                         <i class="bi bi-file-earmark-pdf me-1"></i> View Full Issue PDF
                     </a>
@@ -28,11 +31,14 @@
     <h4 class="mb-4">Articles in this Issue</h4>
 
     <?php if (!empty($articles)): ?>
-        <?php foreach ($articles as $article): ?>
+        <?php
+        $serial = 1;
+        foreach ($articles as $article): ?>
             <div class="card mb-5 border-0 shadow-sm rounded-1 p-4">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-9">
                         <div class="mb-3">
+                            <?= $serial++ ?>.
                             <span
                                 class="badge bg-info text-dark me-2"><?= date('j M, Y', strtotime($article['published_date'])) ?></span>
                             <span class="badge bg-secondary">Review Article</span>
@@ -43,8 +49,7 @@
 
                         <p class="mb-3 small">
                             <strong>DOI:</strong>
-                            <a href="https://doi.org/<?= esc($article['doi']) ?>"
-                                target="_blank"><?= esc($article['doi']) ?></a>
+                            <?= esc($article['doi']) ?>
                             |
                             <strong>Pages:</strong> <?= esc($article['pages']) ?>
                         </p>

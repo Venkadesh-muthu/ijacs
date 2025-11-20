@@ -59,6 +59,12 @@
         <input type="file" name="issue_image" id="issue_image" class="form-control" accept="image/*">
       </div>
 
+      <div class="mb-3">
+        <label for="issue_pdf" class="form-label fw-semibold">Issue PDF (Optional)</label>
+        <input type="file" name="issue_pdf" id="issue_pdf" class="form-control" accept="application/pdf">
+      </div>
+
+
       <div class="text-end">
         <button type="submit" class="btn btn-primary">Save Issue</button>
       </div>

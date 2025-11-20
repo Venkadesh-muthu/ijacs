@@ -44,11 +44,11 @@ class MainController extends BaseController
     {
         // Step 1: Get the latest article with its issue details
         $firstArticle = $this->articleModel
-            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, volumes.volume_no, volumes.year')
+            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
             ->join('issues', 'issues.id = articles.issue_id')
             ->join('volumes', 'volumes.id = issues.volume_id')
-            ->orderBy('issues.published_date', 'DESC')
-            ->orderBy('articles.created_at', 'DESC')
+            ->orderBy('issues.published_date', 'ASC')
+            ->orderBy('articles.created_at', 'ASC')
             ->first();
 
         // If no article found
@@ -65,11 +65,11 @@ class MainController extends BaseController
 
         // Step 2: Get all articles from that issue
         $articles = $this->articleModel
-            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, volumes.volume_no, volumes.year')
+            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
             ->join('issues', 'issues.id = articles.issue_id')
             ->join('volumes', 'volumes.id = issues.volume_id')
             ->where('articles.issue_id', $issueId)
-            ->orderBy('articles.created_at', 'DESC')
+            ->orderBy('articles.created_at', 'ASC')
             ->findAll();
 
         return view('layout/templates', [
@@ -131,22 +131,36 @@ class MainController extends BaseController
     public function specialIssues()
     {
         $articles = $this->articleModel
-            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_image, issues.issue_type, volumes.volume_no, volumes.year')
+            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_image, issues.issue_pdf, issues.issue_type, volumes.volume_no, volumes.year')
             ->join('issues', 'issues.id = articles.issue_id')
             ->join('volumes', 'volumes.id = issues.volume_id')
             ->where('issues.issue_type', 'special')
-            ->orderBy('issues.published_date', 'DESC')
-            ->orderBy('articles.created_at', 'DESC')
+            ->orderBy('issues.published_date', 'ASC')
+            ->orderBy('articles.created_at', 'ASC')
             ->findAll();
 
-        $data = [
+        // Group articles by issue
+        $groupedIssues = [];
+        foreach ($articles as $article) {
+            $groupedIssues[$article['issue_id']]['issue'] = [
+                'published_date' => $article['published_date'],
+                'issue_no' => $article['issue_no'],
+                'issue_image' => $article['issue_image'],
+                'issue_pdf' => $article['issue_pdf'],
+                'issue_type' => $article['issue_type'],
+                'volume_no' => $article['volume_no'],
+                'year' => $article['year'],
+            ];
+            $groupedIssues[$article['issue_id']]['articles'][] = $article;
+        }
+
+        return view('layout/templates', [
             'title' => 'Special Issues',
             'content' => 'special-issues',
-            'articles' => $articles
-        ];
-
-        return view('layout/templates', $data);
+            'groupedIssues' => $groupedIssues
+        ]);
     }
+
 
 
     public function issueDetail($id)

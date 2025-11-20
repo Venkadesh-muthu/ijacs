@@ -5,9 +5,7 @@
         <p class="text-muted mb-1"><?= esc($article['authors']) ?></p>
         <p class="mb-1">
             <strong>DOI:</strong>
-            <a href="https://doi.org/<?= esc($article['doi']) ?>" target="_blank" class="text-decoration-underline">
-                <?= esc($article['doi']) ?>
-            </a>
+            <?= esc($article['doi']) ?>
         </p>
         <p class="mb-0">
             <strong>Volume <?= esc($article['volume_no']) ?>, Issue <?= esc($article['issue_no']) ?> | Pages:
@@ -105,9 +103,9 @@
             <?= esc($article['authors']) ?>. <?= esc($article['title']) ?>.
             <i>J Appl Pharm Sci</i>. <?= date('Y', strtotime($article['published_date'])) ?>;
             <?= esc($article['volume_no']) ?>(<?= esc($article['issue_no']) ?>):<?= esc($article['pages']) ?>.
-            <a href="https://doi.org/<?= esc($article['doi']) ?>" target="_blank">
+            <!-- <a href="https://doi.org/<?= esc($article['doi']) ?>" target="_blank">
                 https://doi.org/<?= esc($article['doi']) ?>
-            </a>
+            </a> -->
         </p>
     </div>
 </main>

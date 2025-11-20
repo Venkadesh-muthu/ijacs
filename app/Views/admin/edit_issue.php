@@ -63,7 +63,18 @@
           </div>
         <?php endif; ?>
       </div>
-
+      <div class="mb-3">
+        <label for="issue_pdf" class="form-label fw-semibold">Issue PDF</label>
+        <input type="file" name="issue_pdf" id="issue_pdf" class="form-control" accept="application/pdf">
+        <?php if (!empty($issue['issue_pdf'])): ?>
+          <div class="mt-2">
+            <a href="<?= base_url('uploads/issues/' . $issue['issue_pdf']) ?>" target="_blank"
+              class="btn btn-sm btn-outline-dark">
+              <i class="bi bi-file-earmark-pdf me-1"></i> View Existing PDF
+            </a>
+          </div>
+        <?php endif; ?>
+      </div>
       <div class="text-end">
         <button type="submit" class="btn btn-primary">Update Issue</button>
       </div>
