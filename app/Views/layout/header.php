@@ -29,6 +29,9 @@
                         <li class="nav-item"><a
                                 class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about' ? 'active text-primary' : '' ?>"
                                 href="about">About the Journal</a></li>
+                        <li class="nav-item"><a
+                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'author_guidelines' ? 'active text-primary' : '' ?>"
+                                href="author_guidelines">Author's Guidelines</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle <?= in_array(uri_string(), ['current-issue', 'issues', 'special-issues']) ? 'active text-primary' : '' ?>"
                                 href="#" role="button" data-bs-toggle="dropdown">

@@ -9,6 +9,7 @@ use App\Controllers\MainController;
  */
 $routes->get('/', 'MainController::index');
 $routes->get('about', 'MainController::about');
+$routes->get('author_guidelines', 'MainController::author_guidelines');
 $routes->get('archives', 'MainController::archives');
 $routes->get('aimscope', 'MainController::aimScope');
 $routes->get('editorial-board', 'MainController::editorialBoard');

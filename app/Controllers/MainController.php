@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
@@ -39,7 +40,14 @@ class MainController extends BaseController
         ];
         return view('layout/templates', $data);
     }
-
+    public function author_guidelines()
+    {
+        $data = [
+            'title' => 'Author is Guidelines',
+            'content' => 'author_guidelines',
+        ];
+        return view('layout/templates', $data);
+    }
     public function currentIssue()
     {
         // Step 1: Get the latest article with its issue details
