@@ -25,7 +25,7 @@
                     <ul class="navbar-nav ms-auto fw-semibold">
                         <li class="nav-item"><a
                                 class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index' ? 'active text-primary' : '' ?>"
-                                href="/">Home</a></li>
+                                href="<?php echo base_url()?>">Home</a></li>
                         <li class="nav-item"><a
                                 class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about' ? 'active text-primary' : '' ?>"
                                 href="about">About the Journal</a></li>
