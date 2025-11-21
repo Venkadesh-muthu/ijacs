@@ -9,7 +9,7 @@
 
     <div class="offcanvas-body d-flex flex-column p-0">
         <div class="text-center py-4 border-bottom">
-            <img src="<?= base_url('admin-template/assets/Profile_pic.png') ?>" class="rounded-circle mb-2" width="80"
+            <img src="<?= base_url('uploads/logos/logo.png') ?>" class="rounded-circle mb-2" width="80"
                 height="80" alt="Admin">
             <h5 class="mb-0"><?= session()->get('adminUser')['username'] ?? 'Admin' ?></h5>
         </div>

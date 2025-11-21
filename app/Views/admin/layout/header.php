@@ -90,7 +90,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#"
                         id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= base_url('admin-template/assets/Profile_pic.png') ?>" class="rounded-circle"
+                        <img src="<?= base_url('uploads/logos/logo.png') ?>" class="rounded-circle"
                             width="36" height="36" alt="Profile">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
