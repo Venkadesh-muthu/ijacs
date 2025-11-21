@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'codeigniter4/appstarter',
-        'pretty_version' => 'v4.6.1',
-        'version' => '4.6.1.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '156960c24647147d33aa8e43b4d840ff6621c51a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'codeigniter4/appstarter' => array(
-            'pretty_version' => 'v4.6.1',
-            'version' => '4.6.1.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '156960c24647147d33aa8e43b4d840ff6621c51a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -298,6 +298,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'smalot/pdfparser' => array(
+            'pretty_version' => 'v2.12.1',
+            'version' => '2.12.1.0',
+            'reference' => '98d31ba34ef5b5a98897ef4b6c3925d502ea53b1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../smalot/pdfparser',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v3.6.0',
             'version' => '3.6.0.0',
@@ -306,6 +315,15 @@
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'symfony/polyfill-mbstring' => array(
+            'pretty_version' => 'v1.33.0',
+            'version' => '1.33.0.0',
+            'reference' => '6d857f4d76bd4b343eac26d6b539585d2bc56493',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'theseer/tokenizer' => array(
             'pretty_version' => '1.2.3',

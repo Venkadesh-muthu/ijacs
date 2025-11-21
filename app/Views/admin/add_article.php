@@ -1,4 +1,4 @@
-<?php // admin/add_article.php and admin/edit_article.php can be merged by checking isset($article) ?>
+<?php // admin/add_article.php and admin/edit_article.php can be merged by checking isset($article)?>
 <main class="main-content">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -65,7 +65,9 @@
                 <div class="col-md-4">
                     <label for="pdf_file" class="form-label">Upload PDF</label>
                     <input type="file" name="pdf_file" id="pdf_file" class="form-control">
+                    <small class="text-success" id="pdf-status"></small>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -97,3 +99,42 @@
         </form>
     </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$("#pdf_file").on("change", function() {
+    let formData = new FormData();
+    formData.append("pdf_file", this.files[0]);
+
+    $("#pdf-status").text("Extracting data... please wait.");
+
+    $.ajax({
+        url: "<?= base_url('admin/articles/extractPdf') ?>",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(res) {
+            let data = JSON.parse(res);
+
+            $("#title").val(data.title);
+            $("#authors").val(data.authors);
+            $("#doi").val(data.doi);
+            $("#pages").val(data.pages);
+            $("#abstract").val(data.abstract);
+            $("#keywords").val(data.keywords);
+
+            if (data.image) {
+                $("#preview-image").remove();
+                $("#image").after(
+                    `<img id="preview-image" src="${data.image}" class="img-thumbnail mt-2" style="max-height:100px">`
+                );
+            }
+
+            $("#pdf-status").text("Extracted successfully!");
+        },
+        error: function() {
+            $("#pdf-status").text("Failed to extract PDF data.");
+        }
+    });
+});
+</script>

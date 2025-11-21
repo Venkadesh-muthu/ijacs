@@ -47,34 +47,89 @@
     </div>
   </div>
 </section>
-
-<!-- Statistics -->
-<section class="bg-dark text-white py-5">
+<section class="py-5 position-relative bg-gradient" 
+style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
   <div class="container text-center">
-    <div class="row g-4">
-      <div class="col-md-3">
-        <i class="bi bi-journal-text fs-1 text-warning"></i>
-        <h2 class="fw-bold counter" data-target="450">0</h2>
-        <p>Published Articles</p>
+    <h2 class="fw-bold mb-5">📘 Useful Resources</h2>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-md-4" data-aos="zoom-in">
+        <a href="uploads/COPE.pdf" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-book fs-1 text-warning mb-3"></i>
+              <h5 class="text-primary">Guidelines for Peer Reviewers</h5>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col-md-3">
-        <i class="bi bi-globe2 fs-1 text-warning"></i>
-        <h2 class="fw-bold counter" data-target="25">0</h2>
-        <p>Indexing Databases</p>
+
+      <!-- Card 2 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        <a href="uploads/Publication_Ethics.pdf" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-globe fs-1 text-warning mb-3"></i>
+              <h5 class="text-success">Publication Ethics</h5>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col-md-3">
-        <i class="bi bi-flag fs-1 text-warning"></i>
-        <h2 class="fw-bold counter" data-target="70">0</h2>
-        <p>Countries Reached</p>
+
+      <!-- Card 3 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+        <a href="uploads/IJACS-Tempate-2013.pdf" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-file-earmark-text fs-1 text-warning mb-3"></i>
+              <h5 class="text-danger">JACS Template</h5>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col-md-3">
-        <i class="bi bi-calendar-check fs-1 text-warning"></i>
-        <h2 class="fw-bold counter" data-target="15">0</h2>
-        <p>Years in Publication</p>
+
+      <!-- Card 4 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <a href="uploads/Copy Right _IJACS.docx" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-file-earmark-check fs-1 text-warning mb-3"></i>
+              <h5 class="text-info">Download Copyright Form</h5>
+            </div>
+          </div>
+        </a>
       </div>
+
+      <!-- Card 5 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="250">
+        <a href="uploads/DOI 10.22607IJACS.2018.602001.pdf" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-file-earmark-plus fs-1 text-warning mb-3"></i>
+              <h5 class="text-warning">Model Manuscript</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+        <a href="author_guidelines" class="text-decoration-none">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-body p-4">
+              <i class="bi bi-question-circle fs-1 text-warning mb-3"></i>
+              <h5 class="text-dark">FAQ</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
+
 
 <!-- Explore Articles - World-Class Design -->
 <section class="py-5 position-relative bg-gradient" style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
@@ -110,6 +165,34 @@
             <a href="#" class="btn btn-outline-danger btn-sm">See Highlights</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics -->
+<section class="bg-dark text-white py-5">
+  <div class="container text-center">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <i class="bi bi-journal-text fs-1 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="450">0</h2>
+        <p>Published Articles</p>
+      </div>
+      <div class="col-md-3">
+        <i class="bi bi-globe2 fs-1 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="25">0</h2>
+        <p>Indexing Databases</p>
+      </div>
+      <div class="col-md-3">
+        <i class="bi bi-flag fs-1 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="70">0</h2>
+        <p>Countries Reached</p>
+      </div>
+      <div class="col-md-3">
+        <i class="bi bi-calendar-check fs-1 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="15">0</h2>
+        <p>Years in Publication</p>
       </div>
     </div>
   </div>

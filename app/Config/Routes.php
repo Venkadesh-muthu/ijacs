@@ -52,6 +52,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('articles', 'AdminController::articles');
     $routes->match(['get', 'post'], 'articles/add', 'AdminController::addArticle');
     $routes->match(['get', 'post'], 'articles/edit/(:num)', 'AdminController::editArticle/$1');
+    $routes->match(['get', 'post'], 'articles/extractPdf', 'AdminController::extractPdf');
     $routes->get('articles/delete/(:num)', 'AdminController::deleteArticle/$1');
 
     $routes->get('references', 'AdminController::listReferences');          // List

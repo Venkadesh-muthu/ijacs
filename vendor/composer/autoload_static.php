@@ -9,6 +9,7 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     );
 
@@ -16,6 +17,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'T' => 
         array (
             'Tests\\Support\\' => 14,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
         ),
         'P' => 
         array (
@@ -50,6 +55,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'Tests\\Support\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests/_support',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
         'Psr\\Log\\' => 
         array (
@@ -97,11 +106,26 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
                 0 => __DIR__ . '/..' . '/mikey179/vfsstream/src/main/php',
             ),
         ),
+        'S' => 
+        array (
+            'Smalot\\PdfParser\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/smalot/pdfparser/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
+        'App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Controllers/AdminController.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/Controllers/BaseController.php',
         'App\\Controllers\\Home' => __DIR__ . '/../..' . '/app/Controllers/Home.php',
+        'App\\Controllers\\MainController' => __DIR__ . '/../..' . '/app/Controllers/MainController.php',
+        'App\\Filters\\AdminAuth' => __DIR__ . '/../..' . '/app/Filters/AdminAuth.php',
+        'App\\Models\\AdminModel' => __DIR__ . '/../..' . '/app/Models/AdminModel.php',
+        'App\\Models\\ArticleModel' => __DIR__ . '/../..' . '/app/Models/ArticleModel.php',
+        'App\\Models\\IssueModel' => __DIR__ . '/../..' . '/app/Models/IssueModel.php',
+        'App\\Models\\ReferenceModel' => __DIR__ . '/../..' . '/app/Models/ReferenceModel.php',
+        'App\\Models\\VolumeModel' => __DIR__ . '/../..' . '/app/Models/VolumeModel.php',
         'CodeIgniter\\API\\ResponseTrait' => __DIR__ . '/..' . '/codeigniter4/framework/system/API/ResponseTrait.php',
         'CodeIgniter\\Autoloader\\Autoloader' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/Autoloader.php',
         'CodeIgniter\\Autoloader\\FileLocator' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/FileLocator.php',
@@ -2522,6 +2546,53 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Smalot\\PdfParser\\Config' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Config.php',
+        'Smalot\\PdfParser\\Document' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Document.php',
+        'Smalot\\PdfParser\\Element' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element.php',
+        'Smalot\\PdfParser\\Element\\ElementArray' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementArray.php',
+        'Smalot\\PdfParser\\Element\\ElementBoolean' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementBoolean.php',
+        'Smalot\\PdfParser\\Element\\ElementDate' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementDate.php',
+        'Smalot\\PdfParser\\Element\\ElementHexa' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementHexa.php',
+        'Smalot\\PdfParser\\Element\\ElementMissing' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementMissing.php',
+        'Smalot\\PdfParser\\Element\\ElementName' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementName.php',
+        'Smalot\\PdfParser\\Element\\ElementNull' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementNull.php',
+        'Smalot\\PdfParser\\Element\\ElementNumeric' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementNumeric.php',
+        'Smalot\\PdfParser\\Element\\ElementString' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementString.php',
+        'Smalot\\PdfParser\\Element\\ElementStruct' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementStruct.php',
+        'Smalot\\PdfParser\\Element\\ElementXRef' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Element/ElementXRef.php',
+        'Smalot\\PdfParser\\Encoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding.php',
+        'Smalot\\PdfParser\\Encoding\\AbstractEncoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/AbstractEncoding.php',
+        'Smalot\\PdfParser\\Encoding\\EncodingLocator' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/EncodingLocator.php',
+        'Smalot\\PdfParser\\Encoding\\ISOLatin1Encoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/ISOLatin1Encoding.php',
+        'Smalot\\PdfParser\\Encoding\\ISOLatin9Encoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/ISOLatin9Encoding.php',
+        'Smalot\\PdfParser\\Encoding\\MacRomanEncoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/MacRomanEncoding.php',
+        'Smalot\\PdfParser\\Encoding\\PDFDocEncoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/PDFDocEncoding.php',
+        'Smalot\\PdfParser\\Encoding\\PostScriptGlyphs' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/PostScriptGlyphs.php',
+        'Smalot\\PdfParser\\Encoding\\StandardEncoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/StandardEncoding.php',
+        'Smalot\\PdfParser\\Encoding\\WinAnsiEncoding' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Encoding/WinAnsiEncoding.php',
+        'Smalot\\PdfParser\\Exception\\EmptyPdfException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/EmptyPdfException.php',
+        'Smalot\\PdfParser\\Exception\\EncodingNotFoundException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/EncodingNotFoundException.php',
+        'Smalot\\PdfParser\\Exception\\InvalidDictionaryObjectException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/InvalidDictionaryObjectException.php',
+        'Smalot\\PdfParser\\Exception\\MissingCatalogException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/MissingCatalogException.php',
+        'Smalot\\PdfParser\\Exception\\MissingPdfHeaderException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/MissingPdfHeaderException.php',
+        'Smalot\\PdfParser\\Exception\\NotImplementedException' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Exception/NotImplementedException.php',
+        'Smalot\\PdfParser\\Font' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font.php',
+        'Smalot\\PdfParser\\Font\\FontCIDFontType0' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontCIDFontType0.php',
+        'Smalot\\PdfParser\\Font\\FontCIDFontType2' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontCIDFontType2.php',
+        'Smalot\\PdfParser\\Font\\FontTrueType' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontTrueType.php',
+        'Smalot\\PdfParser\\Font\\FontType0' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontType0.php',
+        'Smalot\\PdfParser\\Font\\FontType1' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontType1.php',
+        'Smalot\\PdfParser\\Font\\FontType3' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Font/FontType3.php',
+        'Smalot\\PdfParser\\Header' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Header.php',
+        'Smalot\\PdfParser\\PDFObject' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/PDFObject.php',
+        'Smalot\\PdfParser\\Page' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Page.php',
+        'Smalot\\PdfParser\\Pages' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Pages.php',
+        'Smalot\\PdfParser\\Parser' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/Parser.php',
+        'Smalot\\PdfParser\\RawData\\FilterHelper' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/RawData/FilterHelper.php',
+        'Smalot\\PdfParser\\RawData\\RawDataParser' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/RawData/RawDataParser.php',
+        'Smalot\\PdfParser\\XObject\\Form' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/XObject/Form.php',
+        'Smalot\\PdfParser\\XObject\\Image' => __DIR__ . '/..' . '/smalot/pdfparser/src/Smalot/PdfParser/XObject/Image.php',
+        'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Tests\\Support\\Database\\Seeds\\ExampleSeeder' => __DIR__ . '/../..' . '/tests/_support/Database/Seeds/ExampleSeeder.php',
         'Tests\\Support\\Libraries\\ConfigReader' => __DIR__ . '/../..' . '/tests/_support/Libraries/ConfigReader.php',
         'Tests\\Support\\Models\\ExampleModel' => __DIR__ . '/../..' . '/tests/_support/Models/ExampleModel.php',

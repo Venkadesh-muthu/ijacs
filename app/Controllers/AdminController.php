@@ -8,6 +8,7 @@ use App\Models\VolumeModel;
 use App\Models\IssueModel;
 use App\Models\ArticleModel;
 use App\Models\ReferenceModel;
+use Smalot\PdfParser\Parser;
 
 class AdminController extends BaseController
 {
@@ -359,7 +360,7 @@ class AdminController extends BaseController
     }
 
     // -------------------- ARTICLES --------------------
-// Show all articles
+    // Show all articles
     public function articles()
     {
         $this->checkLogin();
@@ -400,8 +401,9 @@ class AdminController extends BaseController
 
             $pdf = $this->request->getFile('pdf_file');
             $pdfName = $pdf && $pdf->isValid() ? $pdf->getRandomName() : null;
-            if ($pdfName)
+            if ($pdfName) {
                 $pdf->move('uploads/articles/', $pdfName);
+            }
 
             $imageName = null;
             $imageFile = $this->request->getFile('image');
@@ -441,7 +443,80 @@ class AdminController extends BaseController
         ]);
 
     }
+    public function extractPdf()
+    {
+        $file = $this->request->getFile('pdf_file');
 
+        if (!$file->isValid()) {
+            return json_encode(['error' => 'Invalid PDF']);
+        }
+
+        // Move the PDF to temp folder
+        $newName = $file->getRandomName();
+        $path = WRITEPATH . "uploads/" . $newName;
+        $file->move(WRITEPATH . "uploads", $newName);
+
+        $parser = new Parser();
+        $pdf = $parser->parseFile($path);
+
+        $details = $pdf->getDetails();
+        $text = $pdf->getText();
+
+        // Extract Title
+        $title = $details['Title'] ?? $this->extractTitle($text);
+
+        // Extract Authors
+        $authors = $details['Author'] ?? $this->extractAuthors($text);
+
+        // Extract DOI
+        preg_match('/10\.\d{4,9}\/[-._;()\/:A-Z0-9]+/i', $text, $doiMatch);
+        $doi = $doiMatch[0] ?? '';
+
+        // Extract Abstract
+        preg_match('/Abstract(.*?)(Introduction|Keywords)/is', $text, $absMatch);
+        $abstract = trim($absMatch[1] ?? '');
+
+        // Extract Keywords
+        preg_match('/Keywords?:?\s*(.*)/i', $text, $keyMatch);
+        $keywords = $keyMatch[1] ?? '';
+
+        // Page Count
+        $pages = count($pdf->getPages());
+
+        // Generate Image Preview (optional with Imagick)
+        $imageUrl = "";
+        if (extension_loaded('imagick')) {
+            $imagePath = WRITEPATH . "uploads/" . uniqid() . ".jpg";
+            $imagick = new \Imagick($path."[0]");
+            $imagick->setImageFormat("jpg");
+            $imagick->thumbnailImage(300, 0);
+            $imagick->writeImage($imagePath);
+
+            $imageUrl = base_url("writable/uploads/" . basename($imagePath));
+        }
+
+        return json_encode([
+            'title' => $title,
+            'authors' => $authors,
+            'doi' => $doi,
+            'pages' => $pages,
+            'abstract' => $abstract,
+            'keywords' => $keywords,
+            'image' => $imageUrl
+        ]);
+    }
+
+    private function extractTitle($text)
+    {
+        $lines = explode("\n", trim($text));
+        return trim($lines[0]);
+    }
+
+    private function extractAuthors($text)
+    {
+        preg_match('/By\s+(.*)/i', $text, $match);
+        return $match[1] ?? '';
+    }
     // Edit Article
     public function editArticle($id)
     {
