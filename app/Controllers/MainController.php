@@ -6,14 +6,15 @@ use App\Models\ArticleModel;
 use App\Models\IssueModel;
 use App\Models\VolumeModel;
 use App\Models\ReferenceModel;
+use App\Models\NewsModel;
 
 class MainController extends BaseController
 {
     protected $articleModel;
     protected $issueModel;
     protected $volumeModel;
-
     protected $referenceModel;
+    protected $newsModel;
 
     public function __construct()
     {
@@ -21,16 +22,25 @@ class MainController extends BaseController
         $this->issueModel = new IssueModel();
         $this->volumeModel = new VolumeModel();
         $this->referenceModel = new ReferenceModel();
+        $this->newsModel = new NewsModel();
 
     }
     public function index()
     {
+        $news = $this->newsModel
+            ->orderBy('id', 'DESC')
+            ->limit(5)   // Show latest 5 news
+            ->findAll();
+
         $data = [
-            'title' => 'Home Page',
+            'title'   => 'Home Page',
             'content' => 'index',
+            'news'    => $news, // PASS TO VIEW
         ];
+
         return view('layout/templates', $data);
     }
+
 
     public function about()
     {

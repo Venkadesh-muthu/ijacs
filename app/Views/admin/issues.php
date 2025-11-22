@@ -32,8 +32,12 @@
 
             <tbody>
               <?php if (!empty($issues)):
-                $i = 1;
-                foreach ($issues as $issue): ?>
+                  $currentPage = $pager->getCurrentPage('default');
+                  $perPage = $pager->getPerPage('default');
+                  $start = ($currentPage - 1) * $perPage + 1;
+
+                  $i = $start;
+                  foreach ($issues as $issue): ?>
                   <tr class="text-center">
                     <td><?= $i++ ?></td>
                     <td><?= esc($issue['volume_no'] ?? 'Volume #' . $issue['volume_id']) ?></td>
@@ -54,7 +58,8 @@
                         onclick="return confirm('Are you sure you want to delete this issue?')">Delete</a>
                     </td>
                   </tr>
-                <?php endforeach; else: ?>
+                <?php endforeach;
+      else: ?>
                 <tr>
                   <td colspan="7" class="text-center">No issues found.</td>
                 </tr>

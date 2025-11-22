@@ -1,4 +1,4 @@
-<?php // admin/articles.php ?>
+<?php // admin/articles.php?>
 <main class="main-content">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -27,12 +27,16 @@
                                 <th>Issue</th>
                                 <th>DOI</th>
                                 <th>Pages</th>
-                                <th class="text-end">Actions</th>
+                                <th colspan="2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (!empty($articles)):
-                                $i = 1;
+                                $currentPage = $pager->getCurrentPage('default');
+                                $perPage = $pager->getPerPage('default');
+                                $start = ($currentPage - 1) * $perPage + 1;
+
+                                $i = $start;
                                 foreach ($articles as $article): ?>
                                     <tr class="text-center">
                                         <td><?= $i++ ?></td>
@@ -41,15 +45,18 @@
                                         <td><?= esc($article['issue_id']) ?></td>
                                         <td><?= esc($article['doi']) ?></td>
                                         <td><?= esc($article['pages']) ?></td>
-                                        <td class="text-end">
+                                        <td>
                                             <a href="<?= base_url('admin/articles/edit/' . $article['id']) ?>"
                                                 class="btn btn-sm btn-outline-primary">Edit</a>
+                                        </td>
+                                        <td>
                                             <a href="<?= base_url('admin/articles/delete/' . $article['id']) ?>"
                                                 class="btn btn-sm btn-outline-danger"
                                                 onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
-                                <?php endforeach; else: ?>
+                                <?php endforeach;
+                            else: ?>
                                 <tr>
                                     <td colspan="7" class="text-center">No articles found.</td>
                                 </tr>

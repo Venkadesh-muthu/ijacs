@@ -15,7 +15,7 @@
 
         <table class="table table-bordered">
             <thead>
-                <tr class="table-light">
+                <tr class="table-light text-center">
                     <th>S.no</th>
                     <th>Reference No</th>
                     <th>Authors</th>
@@ -23,7 +23,7 @@
                     <th>Source</th>
                     <th>Year</th>
                     <th>Type</th>
-                    <th class="text-center">Actions</th>
+                    <th colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,9 +33,13 @@
                     </tr>
                 <?php else: ?>
                     <?php
-                    $i = 0;
+                    $currentPage = $pager->getCurrentPage('default');
+                    $perPage = $pager->getPerPage('default');
+                    $start = ($currentPage - 1) * $perPage + 1;
+
+                    $i = $start;
                     foreach ($references as $ref): ?>
-                        <tr>
+                        <tr class="text-center">
                             <td><?= ++$i ?></td>
                             <td><?= esc($ref['ref_no']) ?></td>
                             <td><?= esc($ref['authors']) ?></td>
@@ -48,6 +52,8 @@
                                     class="btn btn-sm btn-warning me-1">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </a>
+                            </td>
+                            <td>
                                 <a href="<?= base_url('admin/references/delete/' . $ref['id']) ?>"
                                     onclick="return confirm('Are you sure you want to delete this reference?');"
                                     class="btn btn-sm btn-danger">

@@ -85,7 +85,7 @@
             <p class="small">Email ID: bimal.banik@chsst.org</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-primary small">View Profile</a>
+            <a href="uploads/CV-BANIK.pdf" class="text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
             <p class="small">Email ID: arjulsl@uohyd.ernet.in</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-primary small">View Profile</a>
+            <a href="uploads/Prof.A.Reddy.pdf" class="text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -188,7 +188,7 @@
             <p class="small">Email ID: aminabhavi@yahoo.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-primary small">View Profile</a>
+            <a href="uploads/Professor_Tejraj_M.pdf" class="text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -227,7 +227,7 @@
             <p class="small">Email ID: mcssubha3@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-primary small">View Profile</a>
+            <a href="uploads/CV-BANIK.pdf" class="text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@
             <p class="small">Email ID: idchung@pusan.ac.kr</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-primary small">View Profile</a>
+            <a href="uploads/CV-BANIK.pdf" class="text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -349,7 +349,7 @@
             <p class="small">Email ID: pvenkatesu@chemistry.du.ac.in</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/CV-Dr Venkatesu.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -375,7 +375,7 @@
             <p class="small">Email ID: nsbabusk@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr. N. Surendra Babu.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -481,7 +481,7 @@
             <p class="small">Email ID: sureshreddy.kachireddy@gitam.edu; soorikachi@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr KVN Suresh Reddy.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -546,7 +546,7 @@
             <p class="small">Email ID: shamsusmani@gmail.com; s.usmani@lancaster.ac.uk</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr Shams Usmani_LEC.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -571,7 +571,7 @@
             <p class="small">Email ID: yvramireddy@svuniversity.edu.in; dryvrsvu@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/YVR NEW CV 2022 final July new PDF.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -584,7 +584,7 @@
             <p class="small">Email ID: ajit1sujit@yahoo.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Ajit.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -636,7 +636,7 @@
             <p class="small">Email ID: rvraman3@rediffmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Venkataraman.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -662,7 +662,7 @@
             <p class="small">Email ID: nsvelan1975@yahoo.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Sengottuvelan.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -674,7 +674,7 @@
             <p class="small">Email ID: anjaligoel10@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Anjali Goel.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -687,7 +687,7 @@
             <p class="small">Email ID: szaheerhasan2001@yahoo.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/ZAHEER RESUME'.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -700,7 +700,7 @@
             <p class="small">Email ID: sudhish.shukla@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/CV sudhish.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -765,7 +765,7 @@
             <p class="small">Email ID: venkatesuluadavala@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr Venkat Adavala.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -778,7 +778,7 @@
             <p class="small">Email ID: tamatam@uic.edu; cmreddy.cm@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Chandra Tamatam-CV.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -791,7 +791,7 @@
             <p class="small">Email ID: vasan1981@rediffmail.com; seenivasan.subbiah@ttu.edu</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Subbiah_Seenivasan_2017.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -804,7 +804,7 @@
             <p class="small">Email ID: mann_sharma04@yahoo.co.in; mannsharma06@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr Manish Sharma Resume.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -817,7 +817,7 @@
             <p class="small">Email ID: falahchem1974@yahoo.com; sci.falah.al_fartusie@uomustansiriyah.edu.iq</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Falah C.V. english.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -830,7 +830,7 @@
             <p class="small">Email ID: rmuvva@swirecc.com; Raghav.muvva@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dr.Raghavendra Muvva (1).pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -843,7 +843,7 @@
             <p class="small">Email ID: pmeka@nd.edu; raop110@yahoo.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Penchala N. Meka CV (1).pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -856,7 +856,7 @@
             <p class="small">Email ID: dmajumdar30@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Dhrubajyoti Majumdar.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>
@@ -869,7 +869,7 @@
             <p class="small">Email ID: hymavathireddyvari@gmail.com</p>
           </div>
           <div class="card-footer bg-white border-0">
-            <a href="#" class="text-decoration-none text-primary small">View Profile</a>
+            <a href="uploads/Hymavathi Resume.pdf" class="text-decoration-none text-primary small">View Profile</a>
           </div>
         </div>
       </div>

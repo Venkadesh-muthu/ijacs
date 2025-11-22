@@ -8,6 +8,7 @@ use App\Models\VolumeModel;
 use App\Models\IssueModel;
 use App\Models\ArticleModel;
 use App\Models\ReferenceModel;
+use App\Models\NewsModel;
 use Smalot\PdfParser\Parser;
 
 class AdminController extends BaseController
@@ -17,6 +18,8 @@ class AdminController extends BaseController
     protected $issueModel;
     protected $articleModel;
     protected $referenceModel;
+    protected $newsModel;
+
     public function __construct()
     {
         helper(['form', 'url']);
@@ -25,6 +28,8 @@ class AdminController extends BaseController
         $this->issueModel = new IssueModel();
         $this->articleModel = new ArticleModel();
         $this->referenceModel = new ReferenceModel();
+        $this->newsModel = new NewsModel();
+
     }
 
     public function index()
@@ -211,6 +216,108 @@ class AdminController extends BaseController
         $this->volumeModel->delete($id);
 
         return redirect()->to('/admin/volumes')->with('success', 'Volume deleted successfully.');
+    }
+    public function addNews()
+    {
+        $this->checkLogin();
+
+        if ($this->request->getMethod() === 'POST') {
+
+            $rules = [
+                'message' => 'required',
+                'volume' => 'required',
+                'issue' => 'required',
+                'year' => 'required',
+                'deadline' => 'required'
+            ];
+
+            if (!$this->validate($rules)) {
+                return view('admin/layout/templates', [
+                    'title' => 'Add News',
+                    'content' => 'admin/add_news',
+                    'validation' => $this->validator
+                ]);
+            }
+
+            $this->newsModel->save([
+                'message' => $this->request->getPost('message'),
+                'volume' => $this->request->getPost('volume'),
+                'issue' => $this->request->getPost('issue'),
+                'year' => $this->request->getPost('year'),
+                'deadline' => $this->request->getPost('deadline')
+            ]);
+
+            return redirect()->to('/admin/news')->with('success', 'News added!');
+        }
+
+        return view('admin/layout/templates', [
+            'title' => 'Add News',
+            'content' => 'admin/add_news'
+        ]);
+    }
+    public function news()
+    {
+        $this->checkLogin();
+
+        $perPage = 10; // number of news per page
+
+        $news = $this->newsModel
+            ->orderBy('id', 'DESC')
+            ->paginate($perPage, 'default');
+
+        $data = [
+            'title'   => 'News',
+            'news'    => $news,
+            'pager'   => $this->newsModel->pager,  // IMPORTANT
+            'content' => 'admin/news'
+        ];
+
+        return view('admin/layout/templates', $data);
+    }
+
+    public function editNews($id)
+    {
+        $this->checkLogin();
+
+        $news = $this->newsModel->find($id);
+
+        if (!$news) {
+            return redirect()->to('/admin/news')->with('error', 'Record not found.');
+        }
+
+        if ($this->request->getMethod() === 'POST') {
+            $this->newsModel->update($id, [
+                'message' => $this->request->getPost('message'),
+                'volume' => $this->request->getPost('volume'),
+                'issue' => $this->request->getPost('issue'),
+                'year' => $this->request->getPost('year'),
+                'deadline' => $this->request->getPost('deadline')
+            ]);
+
+            return redirect()->to('/admin/news')->with('success', 'News updated!');
+        }
+
+        return view('admin/layout/templates', [
+            'title' => 'Edit News',
+            'news' => $news,
+            'content' => 'admin/edit_news'
+        ]);
+    }
+    public function deleteNews($id)
+    {
+        $this->checkLogin();
+
+        // Check if record exists
+        $news = $this->newsModel->find($id);
+
+        if (!$news) {
+            return redirect()->to('/admin/news')->with('error', 'News not found.');
+        }
+
+        // Delete the record
+        $this->newsModel->delete($id);
+
+        return redirect()->to('/admin/news')->with('success', 'News deleted successfully.');
     }
 
     // -------------------- ISSUES --------------------

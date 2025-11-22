@@ -201,19 +201,50 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
 <!-- News & Events -->
 <section class="bg-light py-5">
   <div class="container">
-    <h2 class="text-center fw-bold mb-4">News & Events</h2>
-    <div class="timeline position-relative">
-      <div class="mb-4" data-aos="fade-up">
-        <h5>March 2025 – IJACS Indexed in Scopus</h5>
-        <p>We are proud to announce our indexing in Scopus as of March 2025.</p>
-      </div>
-      <div class="mb-4" data-aos="fade-up" data-aos-delay="100">
-        <h5>Call for Papers – June 2025 Issue</h5>
-        <p>Submit your manuscript by May 10th to be considered for our next issue.</p>
-      </div>
+    <h2 class="text-center mb-4">News & Events</h2>
+
+    <div class="row">
+      <?php if (!empty($news)): ?>
+        <?php $delay = 0; ?>
+        <?php foreach ($news as $n): ?>
+
+          <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+            <div class="p-3 bg-white shadow-sm rounded border-start" 
+                 style="border-left:5px solid #0d6efd;"> <!-- Blue highlight -->
+
+              <h5 style="color:#0d6efd;"><?= esc($n['message']) ?></h5>
+
+              <p class="mb-1" style="color:#6c757d;">
+                Volume:
+                <span style="color:#000;"><?= esc($n['volume']) ?></span>
+              </p>
+
+              <p class="mb-1" style="color:#6c757d;">
+                Issue:
+                <span style="color:#000;"><?= esc($n['issue']) ?></span>
+              </p>
+
+              <p class="mb-0" style="color:#6c757d;">
+                Deadline:
+                <span style="color:#000;"><?= date('d M Y', strtotime($n['deadline'])) ?></span>
+              </p>
+
+            </div>
+          </div>
+
+          <?php $delay += 100; ?>
+        <?php endforeach; ?>
+
+      <?php else: ?>
+        <p class="text-center">No news available at the moment.</p>
+      <?php endif; ?>
     </div>
+
   </div>
 </section>
+
+
+
 
 <!-- Testimonials -->
 <section class="bg-white py-5">

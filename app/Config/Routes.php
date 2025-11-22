@@ -42,6 +42,13 @@ $routes->group('admin', function ($routes) {
     $routes->match(['get', 'post'], 'volumes/edit/(:num)', 'AdminController::editVolume/$1');
     $routes->get('volumes/delete/(:num)', 'AdminController::deleteVolume/$1');
 
+    // NEWS & EVENTS ROUTES
+    $routes->get('news', 'AdminController::news');
+    $routes->match(['get', 'post'], 'news/add', 'AdminController::addNews');
+    $routes->match(['get', 'post'], 'news/edit/(:num)', 'AdminController::editNews/$1');
+    $routes->get('news/delete/(:num)', 'AdminController::deleteNews/$1');
+
+
     // Issue Management
     $routes->get('issues', 'AdminController::issues');
     $routes->match(['get', 'post'], 'issues/add', 'AdminController::addIssue');
