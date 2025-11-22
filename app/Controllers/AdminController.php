@@ -473,10 +473,15 @@ class AdminController extends BaseController
         $this->checkLogin();
 
         $perPage = 10; // Number of articles per page
+        $articles = $this->articleModel
+          ->select('articles.*, issues.issue_no')
+          ->join('issues', 'issues.id = articles.issue_id')
+          ->orderBy('articles.created_at', 'DESC')
+          ->paginate($perPage, 'default');
 
         $data = [
             'title' => 'Articles',
-            'articles' => $this->articleModel->orderBy('created_at', 'DESC')->paginate($perPage),
+            'articles' => $articles,
             'pager' => $this->articleModel->pager, // Pass the pager object to the view
             'content' => 'admin/articles'
         ];

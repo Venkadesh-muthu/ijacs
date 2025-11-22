@@ -42,7 +42,7 @@
                                         <td><?= $i++ ?></td>
                                         <td><?= esc($article['title']) ?></td>
                                         <td><?= esc($article['authors']) ?></td>
-                                        <td><?= esc($article['issue_id']) ?></td>
+                                        <td><?= esc($article['issue_no']) ?></td>
                                         <td><?= esc($article['doi']) ?></td>
                                         <td><?= esc($article['pages']) ?></td>
                                         <td>
