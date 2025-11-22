@@ -1,5 +1,5 @@
 <!-- Journal Metrics Bar -->
-<section class="bg-warning text-dark py-2 text-center sticky-top" style="z-index: 999;">
+<section class="bg-warning text-dark py-2 text-center">
   <div class="container d-flex justify-content-around flex-wrap fw-bold small">
     <span><i class="bi bi-bar-chart"></i> Impact Factor: 4.2</span>
     <span><i class="bi bi-database"></i> Indexed in: Scopus, DOAJ, Google Scholar</span>
@@ -268,9 +268,9 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
   <div class="container text-center">
     <h5 class="mb-4">Recognized By</h5>
     <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
-      <img src="/assets/images/scopus.png" height="40" alt="Scopus">
-      <img src="/assets/images/doaj.png" height="40" alt="DOAJ">
-      <img src="/assets/images/google-scholar.png" height="40" alt="Google Scholar">
+      <img src="uploads/logos/scopus.png" height="40" alt="Scopus">
+      <img src="uploads/logos/DOAJ.jpg" height="40" alt="DOAJ">
+      <img src="uploads/logos/Google scholar.jpg" height="40" alt="Google Scholar">
     </div>
   </div>
 </section>

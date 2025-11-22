@@ -14,52 +14,92 @@
 <body>
 
     <!-- Header / Navigation -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-primary" href="index">IJACS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto fw-semibold">
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index' ? 'active text-primary' : '' ?>"
-                                href="<?php echo base_url()?>">Home</a></li>
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about' ? 'active text-primary' : '' ?>"
-                                href="about">About the Journal</a></li>
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'author_guidelines' ? 'active text-primary' : '' ?>"
-                                href="author_guidelines">Author's Guidelines</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle <?= in_array(uri_string(), ['current-issue', 'issues', 'special-issues']) ? 'active text-primary' : '' ?>"
-                                href="#" role="button" data-bs-toggle="dropdown">
-                                Issues
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url('current-issue') ?>">Current Issue</a>
-                                </li>
-                                <li><a class="dropdown-item" href="<?= base_url('issues') ?>">Archives</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url('special-issues') ?>">Special Issues</a>
-                                </li>
-                            </ul>
-                        </li>
+<header class="sticky-top bg-white border-bottom shadow-sm" style="z-index: 998;">
+  <nav class="navbar navbar-expand-lg bg-white">
+    <div class="container">
 
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'aimscope' ? 'active text-primary' : '' ?>"
-                                href="aimscope">Aim & Scope</a></li>
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'editorial-board' ? 'active text-primary' : '' ?>"
-                                href="editorial-board">Editorial Board</a></li>
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'special-issues' ? 'active text-primary' : '' ?>"
-                                href="special-issues">Special Issues</a></li>
-                        <li class="nav-item"><a
-                                class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'contact' ? 'active text-primary' : '' ?>"
-                                href="contact">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold text-primary fs-2 d-flex align-items-center" href="<?= base_url() ?>">
+        <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i> IJACS
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+
+        <ul class="navbar-nav ms-auto fw-semibold gap-lg-3">
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'index' ? 'text-primary fw-bold' : '' ?>"
+               href="<?= base_url() ?>">
+               <i class="bi bi-house-door"></i> Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'about' ? 'text-primary fw-bold' : '' ?>"
+               href="about">
+               <i class="bi bi-info-circle"></i> About
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'author_guidelines' ? 'text-primary fw-bold' : '' ?>"
+               href="author_guidelines">
+               <i class="bi bi-pen"></i> Guidelines
+            </a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle px-3 py-2 <?= in_array(uri_string(), ['current-issue','issues','special-issues']) ? 'text-primary fw-bold' : '' ?>"
+               href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-journals"></i> Issues
+            </a>
+
+            <ul class="dropdown-menu shadow-sm border-0">
+              <li><a class="dropdown-item py-2" href="<?= base_url('current-issue') ?>">Current Issue</a></li>
+              <li><a class="dropdown-item py-2" href="<?= base_url('issues') ?>">Archives</a></li>
+              <li><a class="dropdown-item py-2" href="<?= base_url('special-issues') ?>">Special Issues</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'aimscope' ? 'text-primary fw-bold' : '' ?>"
+               href="aimscope">
+               <i class="bi bi-bullseye"></i> Aim & Scope
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'editorial-board' ? 'text-primary fw-bold' : '' ?>"
+               href="editorial-board">
+               <i class="bi bi-people"></i> Editorial Board
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'special-issues' ? 'text-primary fw-bold' : '' ?>"
+               href="special-issues">
+               <i class="bi bi-stars"></i> Special Issues
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'contact' ? 'text-primary fw-bold' : '' ?>"
+               href="contact">
+               <i class="bi bi-envelope"></i> Contact Us
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
