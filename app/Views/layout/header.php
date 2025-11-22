@@ -42,14 +42,14 @@
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'about' ? 'text-primary fw-bold' : '' ?>"
-               href="about">
+               href="<?= base_url() ?>about">
                <i class="bi bi-info-circle"></i> About
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'author_guidelines' ? 'text-primary fw-bold' : '' ?>"
-               href="author_guidelines">
+               href="<?= base_url() ?>author_guidelines">
                <i class="bi bi-pen"></i> Guidelines
             </a>
           </li>
@@ -70,28 +70,28 @@
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'aimscope' ? 'text-primary fw-bold' : '' ?>"
-               href="aimscope">
+               href="<?= base_url() ?>aimscope">
                <i class="bi bi-bullseye"></i> Aim & Scope
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'editorial-board' ? 'text-primary fw-bold' : '' ?>"
-               href="editorial-board">
+               href="<?= base_url() ?>editorial-board">
                <i class="bi bi-people"></i> Editorial Board
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'special-issues' ? 'text-primary fw-bold' : '' ?>"
-               href="special-issues">
+               href="<?= base_url() ?>special-issues">
                <i class="bi bi-stars"></i> Special Issues
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link px-3 py-2 <?= basename($_SERVER['PHP_SELF']) == 'contact' ? 'text-primary fw-bold' : '' ?>"
-               href="contact">
+               href="<?= base_url() ?>contact">
                <i class="bi bi-envelope"></i> Contact Us
             </a>
           </li>
