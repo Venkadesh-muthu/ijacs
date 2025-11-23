@@ -12,8 +12,10 @@
         <?php elseif (session()->getFlashdata('error')): ?>
             <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
         <?php endif; ?>
-
-        <table class="table table-bordered">
+<div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+        <table id="articlesTable" class="table table-bordered mb-0 align-middle">
             <thead>
                 <tr class="table-light text-center">
                     <th>S.no</th>
@@ -23,7 +25,7 @@
                     <th>Source</th>
                     <th>Year</th>
                     <th>Type</th>
-                    <th colspan="2">Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +37,7 @@
                     <?php
                     $currentPage = $pager->getCurrentPage('default');
                     $perPage = $pager->getPerPage('default');
-                    $start = ($currentPage - 1) * $perPage + 1;
+                    $start = ($currentPage - 1) * $perPage;
 
                     $i = $start;
                     foreach ($references as $ref): ?>
@@ -48,18 +50,20 @@
                             <td><?= esc($ref['year']) ?></td>
                             <td><?= ucfirst($ref['type']) ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('admin/references/edit/' . $ref['id']) ?>"
-                                    class="btn btn-sm btn-warning me-1">
+                                <div class="d-inline-flex gap-2">
+                                    <a href="<?= base_url('admin/references/edit/' . $ref['id']) ?>"
+                                    class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                            </td>
-                            <td>
-                                <a href="<?= base_url('admin/references/delete/' . $ref['id']) ?>"
+                                    </a>
+
+                                    <a href="<?= base_url('admin/references/delete/' . $ref['id']) ?>"
                                     onclick="return confirm('Are you sure you want to delete this reference?');"
                                     class="btn btn-sm btn-danger">
                                     <i class="bi bi-trash"></i> Delete
-                                </a>
+                                    </a>
+                                </div>
                             </td>
+
                         </tr>
                     <?php endforeach ?>
                 <?php endif; ?>
@@ -70,4 +74,8 @@
             <?= $pager->links('default', 'bootstrap') ?>
         </div>
     </div>
+      </div>
+</div>
+    </div>
+    
 </main>

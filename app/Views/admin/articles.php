@@ -1,4 +1,3 @@
-<?php // admin/articles.php?>
 <main class="main-content">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -18,7 +17,7 @@
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0 align-middle">
+                    <table id="articlesTable" class="table table-bordered mb-0 align-middle">
                         <thead class="table-light">
                             <tr class="text-center">
                                 <th>#</th>
@@ -27,7 +26,7 @@
                                 <th>Issue</th>
                                 <th>DOI</th>
                                 <th>Pages</th>
-                                <th colspan="2">Actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,15 +44,22 @@
                                         <td><?= esc($article['issue_no']) ?></td>
                                         <td><?= esc($article['doi']) ?></td>
                                         <td><?= esc($article['pages']) ?></td>
-                                        <td>
-                                            <a href="<?= base_url('admin/articles/edit/' . $article['id']) ?>"
-                                                class="btn btn-sm btn-outline-primary">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a href="<?= base_url('admin/articles/delete/' . $article['id']) ?>"
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="<?= base_url('admin/articles/edit/' . $article['id']) ?>"
+                                                class="btn btn-sm btn-outline-primary">
+                                                    Edit
+                                                </a>
+
+                                                <a href="<?= base_url('admin/articles/delete/' . $article['id']) ?>"
                                                 class="btn btn-sm btn-outline-danger"
-                                                onclick="return confirm('Are you sure?')">Delete</a>
+                                                onclick="return confirm('Are you sure?')">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
+
+
                                     </tr>
                                 <?php endforeach;
                             else: ?>

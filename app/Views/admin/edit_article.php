@@ -22,13 +22,15 @@
                     <select name="issue_id" id="issue_id" class="form-select" required>
                         <option value="">-- Select Issue --</option>
                         <?php foreach ($issuesWithVolume as $issue): ?>
-                            <option value="<?= $issue['id'] ?>" <?= isset($article) && $article['issue_id'] == $issue['id'] ? 'selected' : '' ?>>
+                            <option value="<?= $issue['id'] ?>" 
+                                <?= isset($article) && $article['issue_id'] == $issue['id'] ? 'selected' : '' ?>>
                                 Volume <?= esc($issue['volume_no']) ?> (<?= esc($issue['year']) ?>) -
                                 Issue <?= esc($issue['issue_no']) ?> [<?= ucfirst($issue['issue_type']) ?>] -
                                 <?= date('F j, Y', strtotime($issue['published_date'])) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
+
 
                 </div>
                 <div class="col-md-6">
@@ -115,3 +117,12 @@
         </form>
     </div>
 </main>
+<script>
+$(document).ready(function () {
+    $("#issue_id").select2({
+        placeholder: "-- Select Issue --",
+        allowClear: true,
+        width: "100%"
+    });
+});
+</script>

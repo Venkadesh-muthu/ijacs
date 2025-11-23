@@ -4,14 +4,10 @@
 </footer> -->
 
 <!-- Bootstrap JS Bundle -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- ✅ jQuery must load first -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- ✅ Then DataTables -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -30,7 +26,16 @@
         }
     });
 </script>
-
+<script>
+$(document).ready(function() {
+    $("#articlesTable").DataTable({
+        pageLength: 10,
+        ordering: true,
+        searching: true,
+        lengthMenu: [[10, 25, 50, -1], ["10", "25", "50", "Show All"]],
+    });
+});
+</script>
 
 
 

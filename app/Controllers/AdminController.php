@@ -472,7 +472,7 @@ class AdminController extends BaseController
     {
         $this->checkLogin();
 
-        $perPage = 10; // Number of articles per page
+        $perPage = 5; // Number of articles per page
         $articles = $this->articleModel
           ->select('articles.*, issues.issue_no')
           ->join('issues', 'issues.id = articles.issue_id')

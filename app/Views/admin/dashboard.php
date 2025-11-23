@@ -57,7 +57,7 @@
           <div class="card-header bg-white fw-bold">Recent Issues</div>
           <div class="card-body p-0">
             <div class="table-responsive">
-              <table class="table table-bordered table-hover table-striped mb-0 align-middle w-100">
+              <table id="articlesTable" class="table table-bordered table-hover table-striped mb-0 align-middle w-100">
                 <thead class="table-light">
                   <tr>
                     <th>Year</th>

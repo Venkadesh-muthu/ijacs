@@ -27,8 +27,9 @@
                                 <?= date('F j, Y', strtotime($issue['published_date'])) ?>
                             </option>
                         <?php endforeach; ?>
-
                     </select>
+
+
                 </div>
                 <div class="col-md-6">
                     <label for="title" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
@@ -99,7 +100,6 @@
         </form>
     </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $("#pdf_file").on("change", function() {
     let formData = new FormData();
@@ -137,4 +137,12 @@ $("#pdf_file").on("change", function() {
         }
     });
 });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#issue_id').select2({
+            placeholder: "-- Select Issue --",
+            allowClear: true
+        });
+    });
 </script>
