@@ -15,11 +15,11 @@
     <div class="bg-dark bg-opacity-50 p-5 rounded-4 shadow-lg" data-aos="fade-up">
       <h1 class="display-4 fw-bold">Indian Journal of Advances in Chemical Science</h1>
       <p class="lead">A Global Peer-Reviewed Open Access Journal</p>
-      <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+      <!-- <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
         <a href="read.php" class="btn btn-outline-light">Read this Journal</a>
         <a href="submit.php" class="btn btn-warning">Submit Your Article</a>
         <a href="subscribe.php" class="btn btn-outline-info">Email Alerts</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

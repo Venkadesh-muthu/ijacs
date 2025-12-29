@@ -325,23 +325,38 @@ class AdminController extends BaseController
     {
         $this->checkLogin();
 
-        $perPage = 10; // Number of issues per page
+        // Get selected volume from dropdown (GET)
+        $selectedVolume = $this->request->getGet('volume_id');
 
-        $issues = $this->issueModel
+        $builder = $this->issueModel
             ->select('issues.*, volumes.volume_no, volumes.year')
             ->join('volumes', 'volumes.id = issues.volume_id')
-            ->orderBy('issues.created_at', 'DESC')
-            ->paginate($perPage, 'default');
+            ->orderBy('issues.created_at', 'DESC');
+
+        // Apply volume filter if selected
+        if (!empty($selectedVolume)) {
+            $builder->where('issues.volume_id', $selectedVolume);
+        }
+
+        // Fetch all issues (no pagination)
+        $issues = $builder->findAll();
+
+        // Fetch all volumes for dropdown
+        $volumes = $this->volumeModel->orderBy('volume_no', 'ASC')->findAll();
 
         $data = [
-            'title' => 'Issues',
-            'issues' => $issues,
-            'pager' => $this->issueModel->pager, // Include pager object
-            'content' => 'admin/issues'
+            'title'          => 'Issues',
+            'issues'         => $issues,
+            'volumes'        => $volumes,
+            'selectedVolume' => $selectedVolume,
+            // 'pager' => $this->issueModel->pager, // REMOVE THIS
+            'content'        => 'admin/issues'
         ];
 
         return view('admin/layout/templates', $data);
     }
+
+
 
 
     public function addIssue()
@@ -472,22 +487,57 @@ class AdminController extends BaseController
     {
         $this->checkLogin();
 
-        $perPage = 5; // Number of articles per page
-        $articles = $this->articleModel
-          ->select('articles.*, issues.issue_no')
-          ->join('issues', 'issues.id = articles.issue_id')
-          ->orderBy('articles.created_at', 'DESC')
-          ->paginate($perPage, 'default');
+        // Filters
+        $selectedVolume = $this->request->getGet('volume_id');
+        $selectedIssue  = $this->request->getGet('issue_id');
+
+        $builder = $this->articleModel
+            ->select('articles.*, issues.issue_no, volumes.volume_no')
+            ->join('issues', 'issues.id = articles.issue_id')
+            ->join('volumes', 'volumes.id = issues.volume_id')
+            ->orderBy('articles.created_at', 'DESC');
+
+        // Apply filters
+        if (!empty($selectedVolume)) {
+            $builder->where('volumes.id', $selectedVolume);
+        }
+
+        if (!empty($selectedIssue)) {
+            $builder->where('issues.id', $selectedIssue);
+        }
+
+        // Fetch all articles (no pagination)
+        $articles = $builder->findAll();
+
+        // Volumes list
+        $volumes = $this->volumeModel
+            ->orderBy('volume_no', 'ASC')
+            ->findAll();
+
+        // Issues list (based on selected volume)
+        $issues = [];
+        if (!empty($selectedVolume)) {
+            $issues = $this->issueModel
+                ->where('volume_id', $selectedVolume)
+                ->orderBy('issue_no', 'ASC')
+                ->findAll();
+        }
 
         $data = [
-            'title' => 'Articles',
-            'articles' => $articles,
-            'pager' => $this->articleModel->pager, // Pass the pager object to the view
-            'content' => 'admin/articles'
+            'title'          => 'Articles',
+            'articles'       => $articles,
+            'volumes'        => $volumes,
+            'issues'         => $issues,
+            'selectedVolume' => $selectedVolume,
+            'selectedIssue'  => $selectedIssue,
+            // 'pager' => $this->articleModel->pager, // REMOVE THIS
+            'content'        => 'admin/articles'
         ];
 
         return view('admin/layout/templates', $data);
     }
+
+
 
 
     // Add Article

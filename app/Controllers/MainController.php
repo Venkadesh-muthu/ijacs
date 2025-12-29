@@ -58,47 +58,85 @@ class MainController extends BaseController
         ];
         return view('layout/templates', $data);
     }
+
+    // public function currentIssue()
+    // {
+    //     // Step 1: Get the latest article with its issue details
+    //     $firstArticle = $this->articleModel
+    //         ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
+    //         ->join('issues', 'issues.id = articles.issue_id')
+    //         ->join('volumes', 'volumes.id = issues.volume_id')
+    //         ->orderBy('issues.published_date', 'ASC')
+    //         ->orderBy('articles.created_at', 'ASC')
+    //         ->first();
+
+    //     // If no article found
+    //     if (!$firstArticle) {
+    //         return view('layout/templates', [
+    //             'title' => 'Current Issue',
+    //             'content' => 'current_issue',
+    //             'articles' => [],
+    //             'issue' => null
+    //         ]);
+    //     }
+
+    //     $issueId = $firstArticle['issue_id'];
+
+    //     // Step 2: Get all articles from that issue
+    //     $articles = $this->articleModel
+    //         ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
+    //         ->join('issues', 'issues.id = articles.issue_id')
+    //         ->join('volumes', 'volumes.id = issues.volume_id')
+    //         ->where('articles.issue_id', $issueId)
+    //         ->orderBy('articles.created_at', 'ASC')
+    //         ->findAll();
+
+    //     return view('layout/templates', [
+    //         'title' => 'Current Issue',
+    //         'content' => 'current_issue',
+    //         'articles' => $articles,
+    //         'issue' => $firstArticle // contains all issue-related info
+    //     ]);
+    // }
+
     public function currentIssue()
     {
-        // Step 1: Get the latest article with its issue details
-        $firstArticle = $this->articleModel
-            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
-            ->join('issues', 'issues.id = articles.issue_id')
+        // STEP 1: Get the latest issue (latest volume + latest published issue)
+        $latestIssue = $this->issueModel
+            ->select('issues.*, volumes.volume_no, volumes.year')
             ->join('volumes', 'volumes.id = issues.volume_id')
-            ->orderBy('issues.published_date', 'ASC')
-            ->orderBy('articles.created_at', 'ASC')
+            ->orderBy('volumes.year', 'DESC')
+            ->orderBy('volumes.volume_no', 'DESC')
+            ->orderBy('issues.published_date', 'DESC')
             ->first();
 
-        // If no article found
-        if (!$firstArticle) {
+        // If no issue exists
+        if (!$latestIssue) {
             return view('layout/templates', [
-                'title' => 'Current Issue',
+                'title'   => 'Current Issue',
                 'content' => 'current_issue',
                 'articles' => [],
-                'issue' => null
+                'issue'   => null
             ]);
         }
 
-        $issueId = $firstArticle['issue_id'];
-
-        // Step 2: Get all articles from that issue
+        // STEP 2: Get all articles for that latest issue
         $articles = $this->articleModel
-            ->select('articles.*, issues.published_date, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf, volumes.volume_no, volumes.year')
+            ->select('articles.*, issues.issue_no, issues.issue_type, issues.issue_image, issues.issue_pdf,
+                  issues.published_date, volumes.volume_no, volumes.year')
             ->join('issues', 'issues.id = articles.issue_id')
             ->join('volumes', 'volumes.id = issues.volume_id')
-            ->where('articles.issue_id', $issueId)
+            ->where('articles.issue_id', $latestIssue['id'])
             ->orderBy('articles.created_at', 'ASC')
             ->findAll();
 
         return view('layout/templates', [
-            'title' => 'Current Issue',
-            'content' => 'current_issue',
+            'title'    => 'Current Issue',
+            'content'  => 'current_issue',
             'articles' => $articles,
-            'issue' => $firstArticle // contains all issue-related info
+            'issue'    => $latestIssue
         ]);
     }
-
-
 
 
     public function detail($id)

@@ -16,7 +16,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'https://srivatechapps.com/ijacs/';
+    public string $baseURL = 'http://localhost/ijacs_new';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

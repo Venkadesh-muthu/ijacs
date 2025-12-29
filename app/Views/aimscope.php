@@ -78,6 +78,6 @@
 <section class="bg-success text-white text-center py-5">
   <div class="container">
     <h4 class="mb-3">Have Research to Share?</h4>
-    <a href="submit.php" class="btn btn-light btn-lg">Submit to IJACS</a>
+    <a href="contact" class="btn btn-light btn-lg">Submit to IJACS</a>
   </div>
 </section>
