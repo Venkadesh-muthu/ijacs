@@ -31,7 +31,27 @@
 
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <label for="article_type" class="form-label fw-semibold">
+                        Article Type <span class="text-danger">*</span>
+                    </label>
+                    <select name="article_type" id="article_type" class="form-select" required>
+                        <option value="">-- Select Type --</option>
+
+                        <option value="Review Article"
+                            <?= (isset($article) && $article['article_type'] == 'Review Article') ? 'selected' : '' ?>>
+                            Review Article
+                        </option>
+
+                        <option value="Research Article"
+                            <?= (isset($article) && $article['article_type'] == 'Research Article') ? 'selected' : '' ?>>
+                            Research Article
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
                     <label for="title" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" id="title" class="form-control" required
                         value="<?= esc($article['title'] ?? '') ?>">

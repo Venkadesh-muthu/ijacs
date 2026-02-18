@@ -41,7 +41,7 @@
                             <?= $serial++ ?>.
                             <span
                                 class="badge bg-info text-dark me-2"><?= date('j M, Y', strtotime($article['published_date'])) ?></span>
-                            <span class="badge bg-secondary">Review Article</span>
+                            <span class="badge bg-secondary"><?= esc($article['article_type']) ?></span>
                         </div>
 
                         <h5 class="fw-bold mb-3"><?= esc($article['title']) ?></h5>

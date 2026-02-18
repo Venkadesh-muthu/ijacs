@@ -13,7 +13,7 @@
   style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://bgadibs.com/demo/ijacs/assets/images/banner-jornul.jpg') center/cover no-repeat; min-height: 90vh;">
   <div class="container text-center">
     <div class="bg-dark bg-opacity-50 p-5 rounded-4 shadow-lg" data-aos="fade-up">
-      <h1 class="display-4 fw-bold">Indian Journal of Advances in Chemical Science</h1>
+      <h1 class="display-4 fw-bold">International Journal of Advances in Chemical Science</h1>
       <p class="lead">A Global Peer-Reviewed Open Access Journal</p>
       <!-- <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
         <a href="read.php" class="btn btn-outline-light">Read this Journal</a>
@@ -201,50 +201,142 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
 <!-- News & Events -->
 <section class="bg-light py-5">
   <div class="container">
-    <h2 class="text-center mb-4">News & Events</h2>
 
-    <div class="row">
-      <?php if (!empty($news)): ?>
-        <?php $delay = 0; ?>
-        <?php foreach ($news as $n): ?>
+    <h2 class="text-center mb-4 fw-bold">News & Events</h2>
 
-          <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
-            <div class="p-3 bg-white shadow-sm rounded border-start" 
-                 style="border-left:5px solid #0d6efd;"> <!-- Blue highlight -->
+    <!-- TYPE MENU -->
+    <ul class="nav nav-pills justify-content-center mb-4">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#all">
+          All
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#news">
+          News
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#events">
+          Events
+        </button>
+      </li>
+    </ul>
 
-              <h5 style="color:#0d6efd;"><?= esc($n['message']) ?></h5>
+    <div class="tab-content">
 
-              <p class="mb-1" style="color:#6c757d;">
-                Volume:
-                <span style="color:#000;"><?= esc($n['volume']) ?></span>
-              </p>
+      <!-- ================= ALL ================= -->
+      <div class="tab-pane fade show active" id="all">
+        <div class="row">
+          <?php if (!empty($news)): ?>
+            <?php foreach ($news as $n): ?>
+              <div class="col-md-6 mb-4">
+                <div class="bg-white p-4 shadow-sm rounded border-start border-5
+                  <?= $n['type'] === 'event' ? 'border-info' : 'border-primary' ?>">
 
-              <p class="mb-1" style="color:#6c757d;">
-                Issue:
-                <span style="color:#000;"><?= esc($n['issue']) ?></span>
-              </p>
+                  <span class="badge bg-<?= $n['type'] === 'event' ? 'info' : 'primary' ?> mb-2">
+                    <?= ucfirst($n['type']) ?>
+                  </span>
 
-              <p class="mb-0" style="color:#6c757d;">
-                Deadline:
-                <span style="color:#000;"><?= date('d M Y', strtotime($n['deadline'])) ?></span>
-              </p>
+                  <h5 class="fw-bold"><?= esc($n['title']) ?></h5>
 
-            </div>
-          </div>
+                  <p class="text-muted mb-2"><?= esc($n['message']) ?></p>
 
-          <?php $delay += 100; ?>
-        <?php endforeach; ?>
+                  <?php if (!empty($n['deadline'])): ?>
+                    <p class="mb-2">
+                      <strong>Date:</strong>
+                      <?= date('d M Y', strtotime($n['deadline'])) ?>
+                    </p>
+                  <?php endif; ?>
 
-      <?php else: ?>
-        <p class="text-center">No news available at the moment.</p>
-      <?php endif; ?>
+                  <div class="d-flex gap-2">
+                    <?php if (!empty($n['link'])): ?>
+                      <a href="<?= esc($n['link']) ?>" target="_blank"
+                         class="btn btn-sm btn-outline-primary">
+                        View Link
+                      </a>
+                    <?php endif; ?>
+
+                    <?php if (!empty($n['attachment'])): ?>
+                      <a href="<?= base_url('uploads/news/' . $n['attachment']) ?>"
+                         target="_blank"
+                         class="btn btn-sm btn-outline-secondary">
+                        View Attachment
+                      </a>
+                    <?php endif; ?>
+                  </div>
+
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="text-center text-muted">No records found.</p>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <!-- ================= NEWS ================= -->
+      <div class="tab-pane fade" id="news">
+        <div class="row">
+          <?php foreach ($news as $n): ?>
+            <?php if ($n['type'] === 'news'): ?>
+              <div class="col-md-6 mb-4">
+                <div class="bg-white p-4 shadow-sm rounded border-start border-5 border-primary">
+
+                  <span class="badge bg-primary mb-2">News</span>
+                  <h5 class="fw-bold"><?= esc($n['title']) ?></h5>
+                  <p class="text-muted"><?= esc($n['message']) ?></p>
+
+                  <div class="d-flex gap-2">
+                    <?php if (!empty($n['link'])): ?>
+                      <a href="<?= esc($n['link']) ?>" target="_blank"
+                         class="btn btn-sm btn-outline-primary">View</a>
+                    <?php endif; ?>
+                  </div>
+
+                </div>
+              </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+      </div>
+
+      <!-- ================= EVENTS ================= -->
+      <div class="tab-pane fade" id="events">
+        <div class="row">
+          <?php foreach ($news as $n): ?>
+            <?php if ($n['type'] === 'event'): ?>
+              <div class="col-md-6 mb-4">
+                <div class="bg-white p-4 shadow-sm rounded border-start border-5 border-info">
+
+                  <span class="badge bg-info mb-2">Event</span>
+                  <h5 class="fw-bold"><?= esc($n['title']) ?></h5>
+                  <p class="text-muted"><?= esc($n['message']) ?></p>
+
+                  <?php if (!empty($n['deadline'])): ?>
+                    <p><strong>Date:</strong>
+                      <?= date('d M Y', strtotime($n['deadline'])) ?>
+                    </p>
+                  <?php endif; ?>
+
+                  <div class="d-flex gap-2">
+                    <?php if (!empty($n['link'])): ?>
+                      <a href="<?= esc($n['link']) ?>" target="_blank"
+                         class="btn btn-sm btn-outline-info">View</a>
+                    <?php endif; ?>
+                  </div>
+
+                </div>
+              </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+      </div>
+
     </div>
 
   </div>
 </section>
-
-
-
 
 <!-- Testimonials -->
 <section class="bg-white py-5">

@@ -9,6 +9,7 @@ use App\Models\IssueModel;
 use App\Models\ArticleModel;
 use App\Models\ReferenceModel;
 use App\Models\NewsModel;
+use App\Models\EditorialModel;
 use Smalot\PdfParser\Parser;
 
 class AdminController extends BaseController
@@ -19,16 +20,19 @@ class AdminController extends BaseController
     protected $articleModel;
     protected $referenceModel;
     protected $newsModel;
+    protected $editorialModel;
+
 
     public function __construct()
     {
-        helper(['form', 'url']);
+        helper(['form', 'url', 'text']);
         $this->adminModel = new AdminModel();
         $this->volumeModel = new VolumeModel();
         $this->issueModel = new IssueModel();
         $this->articleModel = new ArticleModel();
         $this->referenceModel = new ReferenceModel();
         $this->newsModel = new NewsModel();
+        $this->editorialModel = new EditorialModel();
 
     }
 
@@ -224,56 +228,65 @@ class AdminController extends BaseController
         if ($this->request->getMethod() === 'POST') {
 
             $rules = [
+                'type'    => 'required|in_list[news,event]',
+                'title'   => 'required|min_length[3]',
                 'message' => 'required',
-                'volume' => 'required',
-                'issue' => 'required',
-                'year' => 'required',
-                'deadline' => 'required'
+                'deadline' => 'required',
+                'attachment' => 'permit_empty|uploaded[attachment]|max_size[attachment,2048]|ext_in[attachment,pdf,jpg,jpeg,png]'
             ];
 
             if (!$this->validate($rules)) {
                 return view('admin/layout/templates', [
-                    'title' => 'Add News',
+                    'title' => 'Add News / Event',
                     'content' => 'admin/add_news',
                     'validation' => $this->validator
                 ]);
             }
 
+            // File upload
+            $fileName = null;
+            $file = $this->request->getFile('attachment');
+            if ($file && $file->isValid()) {
+                $fileName = $file->getRandomName();
+                $file->move('uploads/news', $fileName);
+            }
+
             $this->newsModel->save([
-                'message' => $this->request->getPost('message'),
-                'volume' => $this->request->getPost('volume'),
-                'issue' => $this->request->getPost('issue'),
-                'year' => $this->request->getPost('year'),
-                'deadline' => $this->request->getPost('deadline')
+                'type'       => $this->request->getPost('type'),
+                'title'      => $this->request->getPost('title'),
+                'message'    => $this->request->getPost('message'),
+                'link'       => $this->request->getPost('link'),
+                'attachment' => $fileName,
+                'deadline'   => $this->request->getPost('deadline'),
             ]);
 
-            return redirect()->to('/admin/news')->with('success', 'News added!');
+            return redirect()->to('/admin/news')->with('success', 'News / Event added successfully!');
         }
 
         return view('admin/layout/templates', [
-            'title' => 'Add News',
+            'title' => 'Add News / Event',
             'content' => 'admin/add_news'
         ]);
     }
+
     public function news()
     {
         $this->checkLogin();
 
-        $perPage = 10; // number of news per page
+        $perPage = 10;
 
         $news = $this->newsModel
             ->orderBy('id', 'DESC')
-            ->paginate($perPage, 'default');
+            ->paginate($perPage);
 
-        $data = [
+        return view('admin/layout/templates', [
             'title'   => 'News',
             'news'    => $news,
-            'pager'   => $this->newsModel->pager,  // IMPORTANT
+            'pager'   => $this->newsModel->pager,
             'content' => 'admin/news'
-        ];
-
-        return view('admin/layout/templates', $data);
+        ]);
     }
+
 
     public function editNews($id)
     {
@@ -286,39 +299,56 @@ class AdminController extends BaseController
         }
 
         if ($this->request->getMethod() === 'POST') {
+
+            $fileName = $news['attachment'];
+
+            $file = $this->request->getFile('attachment');
+            if ($file && $file->isValid()) {
+                if ($fileName && file_exists('uploads/news/' . $fileName)) {
+                    unlink('uploads/news/' . $fileName);
+                }
+                $fileName = $file->getRandomName();
+                $file->move('uploads/news', $fileName);
+            }
+
             $this->newsModel->update($id, [
-                'message' => $this->request->getPost('message'),
-                'volume' => $this->request->getPost('volume'),
-                'issue' => $this->request->getPost('issue'),
-                'year' => $this->request->getPost('year'),
-                'deadline' => $this->request->getPost('deadline')
+                'type'       => $this->request->getPost('type'),
+                'title'      => $this->request->getPost('title'),
+                'message'    => $this->request->getPost('message'),
+                'link'       => $this->request->getPost('link'),
+                'attachment' => $fileName,
+                'deadline'   => $this->request->getPost('deadline'),
             ]);
 
-            return redirect()->to('/admin/news')->with('success', 'News updated!');
+            return redirect()->to('/admin/news')->with('success', 'News / Event updated successfully!');
         }
 
         return view('admin/layout/templates', [
-            'title' => 'Edit News',
-            'news' => $news,
+            'title'   => 'Edit News / Event',
+            'news'    => $news,
             'content' => 'admin/edit_news'
         ]);
     }
+
     public function deleteNews($id)
     {
         $this->checkLogin();
 
-        // Check if record exists
         $news = $this->newsModel->find($id);
 
         if (!$news) {
             return redirect()->to('/admin/news')->with('error', 'News not found.');
         }
 
-        // Delete the record
+        if (!empty($news['attachment']) && file_exists('uploads/news/' . $news['attachment'])) {
+            unlink('uploads/news/' . $news['attachment']);
+        }
+
         $this->newsModel->delete($id);
 
         return redirect()->to('/admin/news')->with('success', 'News deleted successfully.');
     }
+
 
     // -------------------- ISSUES --------------------
     public function issues()
@@ -578,6 +608,7 @@ class AdminController extends BaseController
             $this->articleModel->save([
                 'issue_id' => $this->request->getPost('issue_id'),
                 'title' => $this->request->getPost('title'),
+                'article_type' => $this->request->getPost('article_type'),
                 'subtitle' => $this->request->getPost('subtitle'),
                 'authors' => $this->request->getPost('authors'),
                 'doi' => $this->request->getPost('doi'),
@@ -706,6 +737,7 @@ class AdminController extends BaseController
             $this->articleModel->update($id, [
                 'issue_id' => $this->request->getPost('issue_id'),
                 'title' => $this->request->getPost('title'),
+                'article_type' => $this->request->getPost('article_type'),
                 'subtitle' => $this->request->getPost('subtitle'),
                 'authors' => $this->request->getPost('authors'),
                 'doi' => $this->request->getPost('doi'),
@@ -1139,6 +1171,122 @@ class AdminController extends BaseController
         }
 
         return $fpage ?: null;
+    }
+    public function editorial()
+    {
+        $this->checkLogin();
+
+        $editorial = $this->editorialModel
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+        return view('admin/layout/templates', [
+            'title' => 'Editorial Board',
+            'editorial' => $editorial,
+            'pager' => $this->editorialModel->pager,
+            'content' => 'admin/editorial_list'
+        ]);
+    }
+
+    public function addEditorial()
+    {
+        $this->checkLogin();
+
+        if ($this->request->getMethod() === 'POST') {
+
+            $rules = [
+                'category' => 'required',
+                'name' => 'required|min_length[3]',
+                'institution' => 'required',
+                'email' => 'required|valid_email',
+                'profile_pdf' => 'permit_empty|uploaded[profile_pdf]|ext_in[profile_pdf,pdf]'
+            ];
+
+            if (!$this->validate($rules)) {
+                return view('admin/layout/templates', [
+                    'title' => 'Add Editorial Member',
+                    'content' => 'admin/add_editorial',
+                    'validation' => $this->validator
+                ]);
+            }
+
+            $fileName = null;
+            $file = $this->request->getFile('profile_pdf');
+            if ($file && $file->isValid()) {
+                $fileName = $file->getRandomName();
+                $file->move('uploads/editorial', $fileName);
+            }
+
+            $this->editorialModel->save([
+                'category' => $this->request->getPost('category'),
+                'name' => $this->request->getPost('name'),
+                'designation' => $this->request->getPost('designation'),
+                'institution' => $this->request->getPost('institution'),
+                'email' => $this->request->getPost('email'),
+                'profile_pdf' => $fileName
+            ]);
+
+            return redirect()->to('/admin/editorial')->with('success', 'Editorial member added');
+        }
+
+        return view('admin/layout/templates', [
+            'title' => 'Add Editorial Member',
+            'content' => 'admin/add_editorial'
+        ]);
+    }
+    public function editEditorial($id)
+    {
+        $this->checkLogin();
+
+        $member = $this->editorialModel->find($id);
+        if (!$member) {
+            return redirect()->to('/admin/editorial')->with('error', 'Record not found');
+        }
+
+        if ($this->request->getMethod() === 'POST') {
+
+            $fileName = $member['profile_pdf'];
+            $file = $this->request->getFile('profile_pdf');
+
+            if ($file && $file->isValid()) {
+                if ($fileName && file_exists('uploads/editorial/' . $fileName)) {
+                    unlink('uploads/editorial/' . $fileName);
+                }
+                $fileName = $file->getRandomName();
+                $file->move('uploads/editorial', $fileName);
+            }
+
+            $this->editorialModel->update($id, [
+                'category' => $this->request->getPost('category'),
+                'name' => $this->request->getPost('name'),
+                'designation' => $this->request->getPost('designation'),
+                'institution' => $this->request->getPost('institution'),
+                'email' => $this->request->getPost('email'),
+                'profile_pdf' => $fileName
+            ]);
+
+            return redirect()->to('/admin/editorial')->with('success', 'Editorial updated');
+        }
+
+        return view('admin/layout/templates', [
+            'title' => 'Edit Editorial Member',
+            'member' => $member,
+            'content' => 'admin/edit_editorial'
+        ]);
+    }
+    public function deleteEditorial($id)
+    {
+        $this->checkLogin();
+
+        $member = $this->editorialModel->find($id);
+
+        if ($member && $member['profile_pdf']) {
+            @unlink('uploads/editorial/' . $member['profile_pdf']);
+        }
+
+        $this->editorialModel->delete($id);
+
+        return redirect()->to('/admin/editorial')->with('success', 'Editorial deleted');
     }
 
     // -------------------- Helper --------------------
