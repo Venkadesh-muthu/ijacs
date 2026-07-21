@@ -210,16 +210,28 @@ class AdminController extends BaseController
     {
         $this->checkLogin();
 
-        // Check if the volume exists
+        // Check if volume exists
         $volume = $this->volumeModel->find($id);
         if (!$volume) {
-            return redirect()->to('/admin/volumes')->with('error', 'Volume not found.');
+            return redirect()->to('/admin/volumes')
+                ->with('error', 'Volume not found.');
         }
 
-        // Delete the volume
+        // ✅ Check if any issues exist under this volume
+        $issueCount = $this->issueModel
+            ->where('volume_id', $id)
+            ->countAllResults();
+
+        if ($issueCount > 0) {
+            return redirect()->to('/admin/volumes')
+                ->with('error', 'Cannot delete volume. Issues exist under this volume.');
+        }
+
+        // ✅ Safe to delete
         $this->volumeModel->delete($id);
 
-        return redirect()->to('/admin/volumes')->with('success', 'Volume deleted successfully.');
+        return redirect()->to('/admin/volumes')
+            ->with('success', 'Volume deleted successfully.');
     }
     public function addNews()
     {
@@ -502,13 +514,28 @@ class AdminController extends BaseController
     {
         $this->checkLogin();
 
+        // Check if issue exists
         $issue = $this->issueModel->find($id);
         if (!$issue) {
-            return redirect()->to('/admin/issues')->with('error', 'Issue not found.');
+            return redirect()->to('/admin/issues')
+                ->with('error', 'Issue not found.');
         }
 
+        // ✅ Check if articles exist under this issue
+        $articleCount = $this->articleModel
+            ->where('issue_id', $id)
+            ->countAllResults();
+
+        if ($articleCount > 0) {
+            return redirect()->to('/admin/issues')
+                ->with('error', 'Cannot delete issue. Articles exist under this issue.');
+        }
+
+        // ✅ Safe to delete
         $this->issueModel->delete($id);
-        return redirect()->to('/admin/issues')->with('success', 'Issue deleted successfully.');
+
+        return redirect()->to('/admin/issues')
+            ->with('success', 'Issue deleted successfully.');
     }
 
     // -------------------- ARTICLES --------------------

@@ -1,9 +1,10 @@
 <!-- Journal Metrics Bar -->
 <section class="bg-warning text-dark py-2 text-center">
   <div class="container d-flex justify-content-around flex-wrap fw-bold small">
-    <span><i class="bi bi-bar-chart"></i> Impact Factor: 4.2</span>
-    <span><i class="bi bi-database"></i> Indexed in: Scopus, DOAJ, Google Scholar</span>
+    <span><i class="bi bi-bar-chart"></i>Scientific Journal Impact Factor :6.342 (2024)</span>
+    <span><i class="bi bi-database"></i> Indexed in: Crossref, DOAJ, Google Scholar</span>
     <span><i class="bi bi-hash"></i> ISSN: 2320-0898</span>
+    <span><i class="bi bi-hash"></i>Online ISSN: 2320-0928</span>
     <span><i class="bi bi-calendar3"></i> Since: 2012</span>
   </div>
 </section>
@@ -13,8 +14,8 @@
   style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://bgadibs.com/demo/ijacs/assets/images/banner-jornul.jpg') center/cover no-repeat; min-height: 90vh;">
   <div class="container text-center">
     <div class="bg-dark bg-opacity-50 p-5 rounded-4 shadow-lg" data-aos="fade-up">
-      <h1 class="display-4 fw-bold">International Journal of Advances in Chemical Science</h1>
-      <p class="lead">A Global Peer-Reviewed Open Access Journal</p>
+      <h1 class="display-4 fw-bold">Indian Journal of Advances in Chemical Science</h1>
+      <p class="lead">A International Peer-Reviewed Open Access Journal</p>
       <!-- <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
         <a href="read.php" class="btn btn-outline-light">Read this Journal</a>
         <a href="submit.php" class="btn btn-warning">Submit Your Article</a>
@@ -84,7 +85,7 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
           <div class="card border-0 shadow-lg h-100">
             <div class="card-body p-4">
               <i class="bi bi-file-earmark-text fs-1 text-warning mb-3"></i>
-              <h5 class="text-danger">JACS Template</h5>
+              <h5 class="text-danger">IJACS Template</h5>
             </div>
           </div>
         </a>
@@ -348,7 +349,7 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
           <img src="/assets/images/testimonial-avatar1.jpg" class="rounded-circle mb-2" width="60" alt="">
           <p>⭐⭐⭐⭐⭐</p>
           <p>"IJACS has streamlined submission and a quick review. Highly recommend!"</p>
-          <small>— Dr. Shalini Rao, IIT Madras</small>
+          <small>— Qian Zhong, University of Texas, USA</small>
         </div>
       </div>
     </div>
@@ -360,7 +361,7 @@ style="background: linear-gradient(to right, #f8f9fa, #e0eafc);">
   <div class="container text-center">
     <h5 class="mb-4">Recognized By</h5>
     <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
-      <img src="uploads/logos/scopus.png" height="40" alt="Scopus">
+      <img src="uploads/logos/crossref member badge.jpg" height="40" alt="Crossref">
       <img src="uploads/logos/DOAJ.jpg" height="40" alt="DOAJ">
       <img src="uploads/logos/Google scholar.jpg" height="40" alt="Google Scholar">
     </div>

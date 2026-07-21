@@ -50,7 +50,7 @@
                 <h6 class="text-primary">Keywords</h6>
                 <?php
                 $keywords = explode(',', $article['keywords']);
-                foreach ($keywords as $kw): ?>
+        foreach ($keywords as $kw): ?>
                     <span class="badge bg-primary text-light me-1 mb-1"><?= esc(trim($kw)) ?></span>
                 <?php endforeach; ?>
             </div>
@@ -101,7 +101,7 @@
         <h6 class="fw-bold">Citation</h6>
         <p class="small">
             <?= esc($article['authors']) ?>. <?= esc($article['title']) ?>.
-            <i>J Appl Pharm Sci</i>. <?= date('Y', strtotime($article['published_date'])) ?>;
+            <i>Indian J. Adv. Chem. Sci</i>. <?= date('Y', strtotime($article['published_date'])) ?>;
             <?= esc($article['volume_no']) ?>(<?= esc($article['issue_no']) ?>):<?= esc($article['pages']) ?>.
             <!-- <a href="https://doi.org/<?= esc($article['doi']) ?>" target="_blank">
                 https://doi.org/<?= esc($article['doi']) ?>

@@ -31,7 +31,7 @@
 
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <label for="article_type" class="form-label fw-semibold">
                         Article Type <span class="text-danger">*</span>
                     </label>
@@ -50,29 +50,28 @@
 
                     </select>
                 </div>
+            </div>
 
-                <div class="col-md-3">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label for="title" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" id="title" class="form-control" required
                         value="<?= esc($article['title'] ?? '') ?>">
                 </div>
-            </div>
-
-            <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="subtitle" class="form-label">Subtitle</label>
                     <input type="text" name="subtitle" id="subtitle" class="form-control"
                         value="<?= esc($article['subtitle'] ?? '') ?>">
                 </div>
-                <div class="col-md-6">
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
                     <label for="authors" class="form-label fw-semibold">Authors <span
                             class="text-danger">*</span></label>
                     <input type="text" name="authors" id="authors" class="form-control" required
                         value="<?= esc($article['authors'] ?? '') ?>">
                 </div>
-            </div>
-
-            <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="doi" class="form-label">DOI</label>
                     <input type="text" name="doi" id="doi" class="form-control"
@@ -83,15 +82,14 @@
                     <input type="text" name="pages" id="pages" class="form-control"
                         value="<?= esc($article['pages'] ?? '') ?>">
                 </div>
-                <div class="col-md-4">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <label for="pdf_file" class="form-label">Upload PDF</label>
                     <input type="file" name="pdf_file" id="pdf_file" class="form-control">
                     <small class="text-success" id="pdf-status"></small>
                 </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="image" class="form-label">Upload Image</label>
                     <input type="file" name="image" id="image" class="form-control">
                     <?php if (!empty($article['images'])): ?>
